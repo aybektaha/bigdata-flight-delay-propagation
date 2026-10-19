@@ -29,10 +29,8 @@ wheels/
 .vscode/
 .idea/
 .DS_Store
-
-# Local Notes & Agent Config
-docs/AI_DETECTOR_WRITING_RULES.md
-.agents/
+.local/
+*.local.*
 
 # Big Data & Spark Artifacts
 data/
