@@ -1,9 +1,12 @@
 \documentclass{article}
 
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.85in]{geometry}
 \usepackage{booktabs}
 \usepackage{cite}
+\usepackage{enumitem}
 \usepackage{hyperref}
+
+\setlist{nosep, topsep=2pt, leftmargin=1.5em}
 
 \hypersetup{
     colorlinks=true,
@@ -12,7 +15,7 @@
     urlcolor=blue
 }
 
-\title{YZV411E - Big Data Analytics Project Proposal \\ \large Distributed Analysis of Aircraft Turnaround Buffers and Reactionary Delay Propagation Using Apache Spark}
+\title{\textbf{YZV411E - Big Data Analytics Project Proposal} \\ \large Distributed Analysis of Aircraft Turnaround Buffers and Delay Propagation Using Apache Spark}
 \author{Aybek Taha At\i lgan \quad (ID: \dots)}
 \date{October 2026}
 
@@ -21,89 +24,67 @@
 \maketitle
 
 \section*{Abstract}
-\textbf{Problem Definition:} Flight disruptions in air transportation rarely stay confined to their point of origin. In high-density airline networks, aircraft are assigned to cyclic multi-leg itineraries throughout the day. When an incoming flight lands late, that disruption either gets absorbed by the scheduled ground turnaround buffer or propagates into the next leg as a reactionary delay. Existing academic work on flight delays predominantly frames the problem as isolated binary classification (predicting whether individual flights exceed a 15-minute delay threshold), largely ignoring rotational tail-number dependencies and operational network effects. Conversely, operations research models that simulate delay trees often rely on single-machine solvers that cannot scale beyond single-airline samples or isolated single-day slices. 
+\textbf{Problem Definition:} Commercial flight delays rarely remain isolated at their point of origin. When an aircraft flies consecutive legs throughout a day, an inbound arrival delay either gets absorbed by the scheduled ground turnaround buffer or cascades into the subsequent departure as a reactionary delay. Existing academic work predominantly casts delay analysis as isolated binary classification on independent rows, ignoring rotational aircraft dependencies. Conversely, network queuing models in operations research capture delay trees but rely on single-machine solvers that cannot scale beyond single-airline slices or isolated days. To overcome these limitations, this project implements a distributed PySpark pipeline across 31.7 million U.S. flight records from 2018 through 2022 ($\approx 9.8$ GB uncompressed). By computing distributed chronological window functions over unique aircraft registrations (\texttt{Tail\_Number}), we quantify buffer absorption dynamics across major hubs and benchmark distributed execution against a single-node Pandas baseline.
 
-To overcome these computational limitations, this project implements a distributed analytical pipeline in Apache Spark to reconstruct aircraft itineraries across more than 31 million domestic U.S. flight records from 2018 through 2022 ($\approx 9.8$ GB uncompressed). By computing chronological window functions over unique aircraft registrations (\texttt{Tail\_Number}), the pipeline quantifies how scheduled ground buffers absorb or amplify delays across different airport hubs and flight intervals. We benchmark distributed PySpark against a single-machine Pandas baseline to evaluate memory boundaries, execution runtimes, and partition efficiency on multi-gigabyte flight graphs.
-
-\noindent
 \section{Project Aim and Motivation}
-Aviation delays cost airlines and passengers tens of billions of dollars annually. While primary delays originate from local shocks like severe weather fronts, mechanical maintenance, or ground-crew shortages, secondary (reactionary) delays account for nearly half of all total delay minutes in mature airspaces. When a tight scheduled turnaround does not accommodate an incoming aircraft's late arrival, the subsequent departure is delayed even if downstream local weather and airspace conditions are completely clear.
+Aviation delays cost airlines and passengers billions of dollars annually. Secondary (reactionary) delays account for nearly half of total delay minutes in congested airspaces. When tight turnaround schedules fail to absorb an incoming disruption, the downstream departure is delayed despite clear local weather.
 
-This project addresses three operational and computational questions:
+This study investigates three operational questions:
 \begin{enumerate}
-    \item What is the minimum scheduled turnaround buffer required at major hub airports to reliably absorb incoming arrival delays without triggering downstream departures?
-    \item How do hub airports differ in their systemic resilience, distinguishing hubs that act as delay absorbers from those that function as delay amplifiers during peak traffic hours?
-    \item What is the quantitative rate of delay propagation across consecutive flight legs, and how can these insights guide buffer scheduling?
+    \item What is the critical scheduled turnaround buffer ($B_{sched}$) required at major hubs to absorb incoming arrival delays without triggering downstream reactionary delays?
+    \item How do hub airports differ in systemic resilience, distinguishing delay-absorbing hubs from delay-amplifying hubs across operating hours?
+    \item What is the quantitative propagation multiplier ($R_0$) of root-cause delays across consecutive flight legs?
 \end{enumerate}
 
-\noindent\textbf{Why Big Data Technologies Are Required:} Tracking aircraft rotations over five continuous years requires cleaning, sorting, and windowing tens of millions of records. A single narrow-body aircraft can perform four to eight legs daily, producing continuous operational chains across hundreds of airports. Reconstructing these sequences requires a distributed stateful window operation:
+\noindent\textbf{Why Big Data Technologies Are Required:} Tracking aircraft itineraries across five calendar years requires sorting and stateful windowing across 31.7 million records. A narrow-body aircraft executes 4 to 8 legs daily, forming continuous operational chains. Reconstructing these sequences requires a distributed stateful operation:
 \begin{center}
 \texttt{Window.partitionBy("Tail\_Number").orderBy("FlightDate", "CRSDepTime")}
 \end{center}
-Executing this operation on a 9.8 GB tabular dataset requires distributed hash-partitioning, secondary sorting, and join operations. On a single machine with 16 GB RAM, conventional tabular libraries (such as Pandas) crash with out-of-memory (OOM) errors or induce heavy operating system swap thrashing during grouping and lagging steps. Apache Spark overcomes this bottleneck by distributing aircraft partitions across worker nodes, spilling shuffles to disk when necessary, and leveraging the Catalyst query optimizer to prune unused columns before computation.
+On a single machine with 16 GB RAM, conventional libraries like Pandas crash with out-of-memory (OOM) errors or induce severe swap thrashing during global grouping and lagging. Apache Spark distributes airframe partitions across worker cores, manages disk spill gracefully, and utilizes Catalyst query optimization to prune unneeded columns prior to shuffle sorting.
 
 \section{Data}
-The project uses the \textit{Flight Delay Dataset 2018--2022}, curated by Rob Mulla from official reporting records maintained by the U.S. Bureau of Transportation Statistics (BTS).
+The project uses the \textit{Flight Delay Dataset 2018--2022}, sourced from the U.S. Bureau of Transportation Statistics (BTS) and hosted on Kaggle (\url{https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022}).
 \begin{itemize}
-    \item \textbf{Source:} Published openly on Kaggle (\url{https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022}), originating from the BTS Office of Airline Information (Form 41, Schedule T-100).
-    \item \textbf{Type:} Tabular relational flight operational logs.
-    \item \textbf{Structure and Volume:} The data spans five calendar years (2018 through 2022) across five primary files:
-    \begin{itemize}
-        \item \texttt{Combined\_Flights\_2018.csv} (1.9 GB)
-        \item \texttt{Combined\_Flights\_2019.csv} (2.7 GB)
-        \item \texttt{Combined\_Flights\_2020.csv} (1.7 GB)
-        \item \texttt{Combined\_Flights\_2021.csv} (2.1 GB)
-        \item \texttt{Combined\_Flights\_2022.csv} (1.4 GB)
-    \end{itemize}
-    The uncompressed CSV files total approximately \textbf{9.8 GB} (well exceeding the 1 GB course minimum) and represent approximately 31.7 million flight records across 61 attributes. Snappy-compressed Parquet alternatives are available at $\approx 1.06$ GB total.
-    \item \textbf{Key Features for Sequence Linking:}
-    \begin{itemize}
-        \item Identifiers: \texttt{Tail\_Number}, \texttt{FlightDate}, \texttt{Operating\_Airline}, \texttt{Flight\_Number\_Operating\_Airline}.
-        \item Spatial endpoints: \texttt{Origin}, \texttt{Dest}, \texttt{OriginAirportID}, \texttt{DestAirportID}.
-        \item Schedule and actual timestamps: \texttt{CRSDepTime}, \texttt{DepTime}, \texttt{CRSArrTime}, \texttt{ArrTime}.
-        \item Delay metrics: \texttt{DepDelay}, \texttt{ArrDelay}, and causal breakdown fields (\texttt{LateAircraftDelay}, \texttt{CarrierDelay}, \texttt{WeatherDelay}, \texttt{NASDelay}).
-    \end{itemize}
-    \item \textbf{Chunking and Partitioning Strategy:} 
-    Raw CSVs will be ingested into Spark, validated, and converted into Apache Parquet format. Data will be partitioned on disk by \texttt{Year} and \texttt{Month}. During the sequence linking phase, data frames will be repartitioned using a hash partitioner on \texttt{Tail\_Number} to ensure that all flights for a given airframe reside in memory on the same executor partition, eliminating redundant shuffles during sequential window operations.
+    \item \textbf{Type and Volume:} Tabular relational flight operational logs across five yearly files (\texttt{Combined\_Flights\_2018.csv} through \texttt{2022.csv}), totaling \textbf{9.8 GB uncompressed CSV} ($\approx 31.7$ million rows, 61 features), comfortably exceeding the 1 GB course minimum. Compressed Parquet equivalents occupy $\approx 1.06$ GB.
+    \item \textbf{Key Features:} Identifiers (\texttt{Tail\_Number}, \texttt{FlightDate}, \texttt{Operating\_Airline}), route endpoints (\texttt{Origin}, \texttt{Dest}), scheduled/actual timestamps (\texttt{CRSDepTime}, \texttt{DepTime}, \texttt{CRSArrTime}, \texttt{ArrTime}), delay durations (\texttt{DepDelay}, \texttt{ArrDelay}), and BTS delay causes (\texttt{LateAircraftDelay}, \texttt{CarrierDelay}, \texttt{WeatherDelay}, \texttt{NASDelay}).
+    \item \textbf{Chunking and Partitioning Strategy:} Data is partitioned on disk by \texttt{Year} and \texttt{Month} in columnar Parquet format. During sequential linking, Spark DataFrames are hash-repartitioned by \texttt{Tail\_Number}. This ensures all chronological flights for an airframe reside within the same executor memory partition, eliminating redundant cross-network shuffles during lag calculations.
 \end{itemize}
 
 \section{Tools and Frameworks}
 \begin{itemize}
-    \item \textbf{Apache Spark (PySpark):} The backbone framework for distributed data ingestion, data hygiene checks, distributed joins, and windowed sequence transformations. Spark's DataFrame API and Catalyst engine optimize execution plans across multi-core executor nodes.
-    \item \textbf{Apache Parquet:} High-performance columnar storage format with dictionary encoding and Snappy compression. It reduces disk footprint from 9.8 GB to $\approx 1.1$ GB and enables column pruning, drastically lowering I/O latency for window queries that only require timestamp, airport, and tail-number columns.
-    \item \textbf{Pandas / DuckDB (Baseline):} Used as a single-node control benchmark on isolated data slices (1-month, 6-month, and 1-year slices) to empirically document where single-node architectures fail due to memory exhaustion.
-    \item \textbf{Plotly and Matplotlib:} For generating turnaround buffer response curves, spatial delay propagation heatmaps, and scalability benchmark charts.
+    \item \textbf{Apache Spark (PySpark):} Primary distributed framework for ingestion, data hygiene, hash repartitioning, and windowed sequence transformations across multi-core executors.
+    \item \textbf{Apache Parquet:} High-performance columnar storage with Snappy compression, shrinking storage from 9.8 GB to $\approx 1.1$ GB and enabling push-down predicates on \texttt{Origin} and \texttt{FlightDate}.
+    \item \textbf{Pandas / DuckDB Baseline:} A single-node control benchmark on 500 MB, 2 GB, and 5 GB slices to document memory exhaustion thresholds and measure empirical speed-up ratios.
+    \item \textbf{Plotly / Matplotlib:} Generation of turnaround response curves, hub propagation heatmaps, and scalability benchmark profiles.
 \end{itemize}
 
 \section{Expected Outcomes and Evaluation}
 \begin{enumerate}
-    \item \textbf{Benchmarked Distributed Performance:} A rigorous comparison between single-node Pandas and distributed Apache Spark across varying data volumes (500 MB, 2 GB, 5 GB, and 9.8 GB). Evaluation will measure total elapsed execution time, peak memory usage, CPU core utilization, and speed-up ratios.
-    \item \textbf{Empirical Turnaround Buffer Absorption Curves:} Quantifying the relationship between scheduled turnaround duration ($B_{sched} = \text{CRSDepTime}_{k+1} - \text{CRSArrTime}_k$) and net delay variation ($\Delta D = \text{DepDelay}_{k+1} - \text{ArrDelay}_k$). We will evaluate the empirical buffer threshold at which $\Delta D \le 0$ for top U.S. carriers.
-    \item \textbf{Hub Resilience Taxonomy:} Categorization of major hub airports (e.g., ATL, ORD, DFW, DEN, JFK) into delay-absorbing versus delay-amplifying nodes, controlling for seasonal weather and airport congestion indices.
-    \item \textbf{Operational Insights and Visualization Dashboard:} A set of data-driven heuristics indicating where schedule padding yields the greatest reduction in downstream reactionary delays.
+    \item \textbf{Benchmarked Distributed Performance:} Empirical comparison of single-node Pandas versus PySpark across scaled data volumes (500 MB to 9.8 GB). Metrics include wall-clock runtime, peak heap memory, CPU core utilization, and speed-up curves.
+    \item \textbf{Turnaround Buffer Absorption Curves:} Quantification of net delay variation $\Delta D = \text{DepDelay}_{k+1} - \text{ArrDelay}_k$ against scheduled buffer $B_{sched} = \text{CRSDepTime}_{k+1} - \text{CRSArrTime}_k$, establishing the threshold where $\Delta D \le 0$ with 80\% confidence.
+    \item \textbf{Hub Resilience Taxonomy:} Categorization of major hubs (ATL, ORD, DFW, DEN, JFK) into delay-absorbing versus delay-amplifying nodes, controlling for seasonal weather and airport congestion.
+    \item \textbf{Reproducible Pipeline and Insights:} Fully documented PySpark codebase and interactive dashboard heuristics for buffer schedule planning.
 \end{enumerate}
 
 \section{Progress Plan}
+The following milestones are planned prior to the progress report submission:
 \begin{itemize}
-    \item \textbf{Step 1 (Weeks 1--2) -- Data Ingestion and Quality Audit:} Download the 2018--2022 dataset files, compute SHA-256 checksums, verify schema integrity, check missing rates in \texttt{Tail\_Number}, and convert the raw CSV files into partitioned Parquet format.
-    \item \textbf{Step 2 (Weeks 3--4) -- Exploratory Baseline Analysis:} Generate baseline descriptive metrics across airlines, airports, and seasons using PySpark. Profile delay distributions and validate BTS \texttt{LateAircraftDelay} flags against ground truth delays.
-    \item \textbf{Step 3 (Weeks 5--6) -- Sequence Linking Pipeline:} Construct the distributed windowing pipeline to chain consecutive flights by \texttt{Tail\_Number}. Handle boundary conditions (overnight layovers $>8$ hours, tail swaps, and diverted legs).
-    \item \textbf{Step 4 (Weeks 7--8) -- Delay Propagation Analysis and Benchmarking:} Compute buffer absorption functions and downstream propagation trees. Execute standardized benchmark tasks on single-node Pandas versus PySpark with varying executor configurations (measuring runtime and memory consumption).
-    \item \textbf{Step 5 (Weeks 9--10) -- Synthesis, Visualization, and Final Report:} Synthesize operational findings, generate interactive response charts, document repo codebase, and author the final project deliverable.
+    \item \textbf{Step 1 (Weeks 1--2) -- Ingestion and Quality Audit:} Download 2018--2022 files, compute SHA-256 checksums, audit \texttt{Tail\_Number} missingness, and build the partitioned Parquet conversion pipeline.
+    \item \textbf{Step 2 (Weeks 3--4) -- Baseline Profiling and Validation:} Profile delay distributions across carriers/seasons and validate BTS \texttt{LateAircraftDelay} tags against ground-truth delays.
+    \item \textbf{Step 3 (Weeks 5--6) -- Sequence Linking Pipeline:} Construct the PySpark windowing pipeline, handling boundary edge cases (overnight layovers $>8$ hours and diverted legs).
+    \item \textbf{Step 4 (Weeks 7--8) -- Benchmarking and Propagation Modeling:} Execute standardized runtime/memory benchmarks (Pandas vs. PySpark) and compute hub buffer absorption curves.
+    \item \textbf{Step 5 (Weeks 9--10) -- Visualization and Final Deliverable:} Produce interactive dashboards, synthesize operational recommendations, and author the final report.
 \end{itemize}
 
-\begin{thebibliography}{99}
+\begin{thebibliography}{99}\small
 \bibitem{beatty2001}
-R.~Beatty, R.~Hsu, L.~Berry, and J.~Rome, ``Preliminary evaluation of flight delay propagation through an airline schedule,'' in \textit{4th USA/Europe Air Traffic Management R\&D Seminar}, Santa Fe, NM, 2001.
-
+R.~Beatty et al., ``Evaluation of flight delay propagation through an airline schedule,'' in \textit{4th USA/Europe ATM R\&D Seminar}, 2001.
 \bibitem{pyrgiotis2013}
-N.~Pyrgiotis, K.~Malone, and A.~Odoni, ``A complex network approach to modeling delay propagation in large transportation networks,'' \textit{Transportation Research Part C: Emerging Technologies}, vol.~27, pp.~208--238, 2013.
-
+N.~Pyrgiotis et al., ``A complex network approach to modeling delay propagation,'' \textit{Transp. Res. Part C}, vol.~27, pp.~208--238, 2013.
 \bibitem{fleurquin2013}
-P.~Fleurquin, J.~J.~Ramasco, and V.~M.~Eguiluz, ``Systemic delay propagation in the US airport network,'' \textit{Scientific Reports}, vol.~3, no.~1, p.~1159, 2013.
-
+P.~Fleurquin et al., ``Systemic delay propagation in the US airport network,'' \textit{Sci. Rep.}, vol.~3, p.~1159, 2013.
 \bibitem{bts2023}
-Bureau of Transportation Statistics, ``Understanding the reporting of causes of flight delays,'' U.S. Department of Transportation, Washington, D.C., Tech. Rep., 2023.
+Bureau of Transportation Statistics, ``Reporting causes of flight delays,'' U.S. DOT, Tech. Rep., 2023.
 \end{thebibliography}
 
 \end{document}
