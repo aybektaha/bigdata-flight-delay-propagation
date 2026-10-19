@@ -76,13 +76,13 @@ The study uses the multi-year flight dataset curated by Rob Mulla on Kaggle (\ur
 \end{enumerate}
 
 \section{Progress Plan}
-Milestones scheduled prior to the progress report deliverable:
+Milestones scheduled for the remainder of the semester (Weeks 4--14):
 \begin{itemize}
-    \item \textbf{Weeks 1--2 (Data Ingestion and Pipeline Setup):} Ingest full 2018--2022 files, audit multi-year schema consistency, and construct the partitioned Parquet conversion pipeline.
-    \item \textbf{Weeks 3--4 (Exploratory Profiling and Baseline):} Generate baseline delay statistics across carriers, airport hubs, and pre/post-pandemic periods; profile arrival delay distributions.
-    \item \textbf{Weeks 5--6 (Sequence Linking Implementation):} Build the PySpark windowing pipeline with operational boundaries: enforce spatial continuity ($Dest_k = Origin_{k+1}$) and classify turnaround times into within-day turns ($30 \le \Delta t \le 240$ min) versus overnight rests ($\Delta t \ge 480$ min).
-    \item \textbf{Weeks 7--8 (Benchmarking and Buffer Modeling):} Run standardized scalability benchmarks (Pandas vs. PySpark) across core counts; compute empirical buffer absorption functions.
-    \item \textbf{Weeks 9--10 (Synthesis and Final Deliverable):} Evaluate adaptive buffer trade-offs, generate interactive flow visualizations, and author the final project deliverable.
+    \item \textbf{Weeks 4--5 (Data Ingestion and Pipeline Setup):} Ingest full 2018--2022 files, audit multi-year schema consistency, and construct the partitioned Parquet conversion pipeline.
+    \item \textbf{Weeks 6--7 (Exploratory Profiling and Baseline):} Generate baseline delay statistics across carriers, airport hubs, and pre/post-pandemic periods; profile arrival delay distributions.
+    \item \textbf{Weeks 8--9 (Sequence Linking Implementation):} Build the PySpark windowing pipeline with operational boundaries: enforce spatial continuity ($Dest_k = Origin_{k+1}$) and classify turnaround times into within-day turns ($30 \le \Delta t \le 240$ min) versus overnight rests ($\Delta t \ge 480$ min).
+    \item \textbf{Weeks 10--11 (Benchmarking and Buffer Modeling):} Run standardized scalability benchmarks (Pandas vs. PySpark) across core counts; compute empirical buffer absorption functions.
+    \item \textbf{Weeks 12--14 (Synthesis, Dashboard, and Final Deliverable):} Evaluate adaptive buffer trade-offs, generate interactive flow visualizations, and author the final project deliverable.
 \end{itemize}
 
 \begin{thebibliography}{99}\small
