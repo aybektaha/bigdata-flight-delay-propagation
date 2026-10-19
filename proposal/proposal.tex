@@ -36,7 +36,7 @@
 To bridge this operational and computational gap, this project develops a distributed data pipeline in Apache Spark to evaluate turnaround buffer dynamics across 31.7 million U.S. domestic flights from 2018 through 2022 ($\approx 9.8$ GB raw tabular data). Using distributed chronological windowing over unique aircraft registrations (\texttt{Tail\_Number}), the pipeline links consecutive legs under strict spatial continuity ($Dest_k = Origin_{k+1}$). We evaluate how scheduled ground buffers absorb or amplify delays across major hubs and empirically benchmark distributed PySpark against a single-machine Pandas/DuckDB baseline across scaled data volumes.
 
 \section{Project Aim and Motivation}
-Aviation delays generate billions of dollars in annual operating losses. Secondary (reactionary) delays, caused when an aircraft lands late and the scheduled turnaround cannot absorb the deficit, account for a substantial share of total airspace delay minutes. While recent operational literature has begun exploring adaptive ground buffers to curb propagation, evaluating these mechanisms across multi-year nationwide networks remains computationally challenging.
+Aviation delays generate billions of dollars in annual operating losses. Secondary (reactionary) delays, caused when an aircraft lands late and the scheduled turnaround cannot absorb the deficit, account for a substantial share of total airspace delay minutes. While recent econometric and operational studies analyze scheduled ground buffers to mitigate reactionary delay \cite{wu2021}, evaluating adaptive buffer allocation policies across multi-year nationwide networks remains computationally challenging.
 
 This project delivers two distinct contributions:
 \begin{enumerate}
@@ -92,6 +92,8 @@ R.~Beatty et al., ``Preliminary evaluation of flight delay propagation through a
 N.~Pyrgiotis et al., ``A complex network approach to modeling delay propagation in large transportation networks,'' \textit{Transp. Res. Part C}, vol.~27, pp.~208--238, 2013.
 \bibitem{fleurquin2013}
 P.~Fleurquin et al., ``Systemic delay propagation in the US airport network,'' \textit{Sci. Rep.}, vol.~3, p.~1159, 2013.
+\bibitem{wu2021}
+C.~L.~Wu and P.~C.~Law, ``Empirical analysis of scheduled turnaround time and flight delay propagation,'' \textit{J. Air Transp. Manag.}, vol.~91, p.~102008, 2021.
 \bibitem{bts2023}
 Bureau of Transportation Statistics, ``Reporting Carrier On-Time Performance (14 CFR Part 234),'' U.S. Department of Transportation, Tech. Rep., 2023.
 \end{thebibliography}
