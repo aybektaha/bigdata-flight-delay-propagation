@@ -40,7 +40,7 @@ In mature airspace networks, secondary (reactionary) delays routinely exceed pri
 
 This project delivers two distinct contributions:
 \begin{enumerate}
-    \item \textbf{Big Data Engineering Track:} We design a distributed PySpark architecture to clean, partition, and window ~32 million flight records. We evaluate the performance trade-offs between uncompressed CSV and columnar Parquet formats, evaluate hash-repartitioning by \texttt{Tail\_Number} versus default window shuffle, and conduct systematic benchmarks against single-machine baselines to identify the empirical crossover threshold where distributed scaling justifies cluster coordination overhead.
+    \item \textbf{Big Data Engineering Track:} We design a distributed PySpark architecture to clean, partition, and window ~32 million flight records. We compare uncompressed CSV against columnar Parquet storage, evaluate hash-repartitioning by \texttt{Tail\_Number} versus default window shuffle, and conduct systematic benchmarks against single-machine baselines to identify the empirical crossover threshold where distributed scaling justifies cluster coordination overhead.
     \item \textbf{Aviation Operations Track:} We model the observational relationship between scheduled turnaround duration and downstream delay variation ($\Delta D = \text{DepDelay}_{k+1} - \text{ArrDelay}_k$). Through counterfactual scenario analysis, we compare uniform buffer schedules against airport- and time-adaptive alternatives, assessing the operational trade-off between delay risk and fleet utilization (idle ground time).
 \end{enumerate}
 
