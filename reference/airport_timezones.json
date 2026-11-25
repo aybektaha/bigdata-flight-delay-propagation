@@ -1,0 +1,1550 @@
+{
+  "source": {
+    "repository": "https://github.com/mborsetti/airportsdata",
+    "commit": "6adf0985697b5f5d2264ff9578158eeeded1e3d1",
+    "files": {
+      "airports.csv": {
+        "url": "https://raw.githubusercontent.com/mborsetti/airportsdata/6adf0985697b5f5d2264ff9578158eeeded1e3d1/airportsdata/airports.csv",
+        "sha256": "564322214d61deea3b029588fed8f9c0068408314fcbf065ad665dfb5de53e8b"
+      },
+      "LICENSE": {
+        "url": "https://raw.githubusercontent.com/mborsetti/airportsdata/6adf0985697b5f5d2264ff9578158eeeded1e3d1/LICENSE",
+        "sha256": "1ab6bf365e1f6a1883ab6a2f797e761b221081b52a33273d86c157fd562106be"
+      }
+    }
+  },
+  "source_license": "airportsdata-LICENSE.txt",
+  "timezone_data": {
+    "package": "2025.2",
+    "iana": "2025b",
+    "source": "tzdata package files; system time-zone files are not used"
+  },
+  "input": {
+    "filename": "Combined_Flights_2022.parquet",
+    "sha256": "89eac402d3d9b454c88597ed2b6fca1d8169738f698871ad7b20ad9fb5ca554f",
+    "date_start": "2022-01-01 00:00:00",
+    "date_end": "2022-07-31 00:00:00"
+  },
+  "coverage": {
+    "airport_codes": 375,
+    "mapped": 375,
+    "direct_matches": 374,
+    "overrides": 1
+  },
+  "limitations": "Current reference with an explicit historical-code override. Coverage is not independent historical validation of every airport.",
+  "applied_overrides": {
+    "PBI": {
+      "source_iata": "DJT",
+      "expected_bts_airport_ids": [
+        14027
+      ],
+      "reason": "The 2022 records use PBI. The current source uses DJT for the same airport. Preserve PBI as the lookup key for these records.",
+      "evidence_url": "https://flydjt.org/articles/post/president-donald-j-trump-international-airport-name-change-takes-effect/",
+      "scope": "Reviewed for the January-July 2022 input only; not a general historical code crosswalk."
+    }
+  },
+  "bts_airport_ids": {
+    "ABE": [
+      10135
+    ],
+    "ABI": [
+      10136
+    ],
+    "ABQ": [
+      10140
+    ],
+    "ABR": [
+      10141
+    ],
+    "ABY": [
+      10146
+    ],
+    "ACK": [
+      10154
+    ],
+    "ACT": [
+      10155
+    ],
+    "ACV": [
+      10157
+    ],
+    "ACY": [
+      10158
+    ],
+    "ADK": [
+      10165
+    ],
+    "ADQ": [
+      10170
+    ],
+    "AEX": [
+      10185
+    ],
+    "AGS": [
+      10208
+    ],
+    "AKN": [
+      10245
+    ],
+    "ALB": [
+      10257
+    ],
+    "ALO": [
+      10268
+    ],
+    "ALS": [
+      10272
+    ],
+    "ALW": [
+      10275
+    ],
+    "AMA": [
+      10279
+    ],
+    "ANC": [
+      10299
+    ],
+    "APN": [
+      10333
+    ],
+    "ART": [
+      10361
+    ],
+    "ASE": [
+      10372
+    ],
+    "ATL": [
+      10397
+    ],
+    "ATW": [
+      10408
+    ],
+    "ATY": [
+      10409
+    ],
+    "AUS": [
+      10423
+    ],
+    "AVL": [
+      10431
+    ],
+    "AVP": [
+      10434
+    ],
+    "AZA": [
+      10466
+    ],
+    "AZO": [
+      10469
+    ],
+    "BDL": [
+      10529
+    ],
+    "BET": [
+      10551
+    ],
+    "BFF": [
+      10558
+    ],
+    "BFL": [
+      10561
+    ],
+    "BGM": [
+      10577
+    ],
+    "BGR": [
+      10581
+    ],
+    "BHM": [
+      10599
+    ],
+    "BIH": [
+      10617
+    ],
+    "BIL": [
+      10620
+    ],
+    "BIS": [
+      10627
+    ],
+    "BJI": [
+      10631
+    ],
+    "BKG": [
+      10643
+    ],
+    "BLI": [
+      10666
+    ],
+    "BLV": [
+      10676
+    ],
+    "BMI": [
+      10685
+    ],
+    "BNA": [
+      10693
+    ],
+    "BOI": [
+      10713
+    ],
+    "BOS": [
+      10721
+    ],
+    "BPT": [
+      10728
+    ],
+    "BQK": [
+      10731
+    ],
+    "BQN": [
+      10732
+    ],
+    "BRD": [
+      10739
+    ],
+    "BRO": [
+      10747
+    ],
+    "BRW": [
+      10754
+    ],
+    "BTM": [
+      10779
+    ],
+    "BTR": [
+      10781
+    ],
+    "BTV": [
+      10785
+    ],
+    "BUF": [
+      10792
+    ],
+    "BUR": [
+      10800
+    ],
+    "BWI": [
+      10821
+    ],
+    "BZN": [
+      10849
+    ],
+    "CAE": [
+      10868
+    ],
+    "CAK": [
+      10874
+    ],
+    "CDC": [
+      10918
+    ],
+    "CDV": [
+      10926
+    ],
+    "CGI": [
+      10967
+    ],
+    "CHA": [
+      10980
+    ],
+    "CHO": [
+      10990
+    ],
+    "CHS": [
+      10994
+    ],
+    "CID": [
+      11003
+    ],
+    "CIU": [
+      11013
+    ],
+    "CKB": [
+      11027
+    ],
+    "CLE": [
+      11042
+    ],
+    "CLL": [
+      11049
+    ],
+    "CLT": [
+      11057
+    ],
+    "CMH": [
+      11066
+    ],
+    "CMI": [
+      11067
+    ],
+    "CMX": [
+      11076
+    ],
+    "CNY": [
+      11092
+    ],
+    "COD": [
+      11097
+    ],
+    "COS": [
+      11109
+    ],
+    "COU": [
+      11111
+    ],
+    "CPR": [
+      11122
+    ],
+    "CRP": [
+      11140
+    ],
+    "CRW": [
+      11146
+    ],
+    "CSG": [
+      11150
+    ],
+    "CVG": [
+      11193
+    ],
+    "CWA": [
+      11203
+    ],
+    "CYS": [
+      11233
+    ],
+    "DAB": [
+      11252
+    ],
+    "DAL": [
+      11259
+    ],
+    "DAY": [
+      11267
+    ],
+    "DBQ": [
+      11274
+    ],
+    "DCA": [
+      11278
+    ],
+    "DDC": [
+      11283
+    ],
+    "DEC": [
+      11288
+    ],
+    "DEN": [
+      11292
+    ],
+    "DFW": [
+      11298
+    ],
+    "DHN": [
+      11308
+    ],
+    "DIK": [
+      11315
+    ],
+    "DLG": [
+      11336
+    ],
+    "DLH": [
+      11337
+    ],
+    "DRO": [
+      11413
+    ],
+    "DRT": [
+      11415
+    ],
+    "DSM": [
+      11423
+    ],
+    "DTW": [
+      11433
+    ],
+    "DVL": [
+      11447
+    ],
+    "EAR": [
+      11468
+    ],
+    "EAT": [
+      11470
+    ],
+    "EAU": [
+      11471
+    ],
+    "ECP": [
+      11481
+    ],
+    "EGE": [
+      11503
+    ],
+    "EKO": [
+      11525
+    ],
+    "ELM": [
+      11537
+    ],
+    "ELP": [
+      11540
+    ],
+    "ERI": [
+      11577
+    ],
+    "ESC": [
+      11587
+    ],
+    "EUG": [
+      11603
+    ],
+    "EVV": [
+      11612
+    ],
+    "EWN": [
+      11617
+    ],
+    "EWR": [
+      11618
+    ],
+    "EYW": [
+      11624
+    ],
+    "FAI": [
+      11630
+    ],
+    "FAR": [
+      11637
+    ],
+    "FAT": [
+      11638
+    ],
+    "FAY": [
+      11641
+    ],
+    "FCA": [
+      11648
+    ],
+    "FLG": [
+      11695
+    ],
+    "FLL": [
+      11697
+    ],
+    "FLO": [
+      11699
+    ],
+    "FNT": [
+      11721
+    ],
+    "FOD": [
+      11725
+    ],
+    "FSD": [
+      11775
+    ],
+    "FSM": [
+      11778
+    ],
+    "FWA": [
+      11823
+    ],
+    "GCC": [
+      11865
+    ],
+    "GCK": [
+      11867
+    ],
+    "GEG": [
+      11884
+    ],
+    "GFK": [
+      11898
+    ],
+    "GGG": [
+      11905
+    ],
+    "GJT": [
+      11921
+    ],
+    "GNV": [
+      11953
+    ],
+    "GPT": [
+      11973
+    ],
+    "GRB": [
+      11977
+    ],
+    "GRI": [
+      11980
+    ],
+    "GRK": [
+      11982
+    ],
+    "GRR": [
+      11986
+    ],
+    "GSO": [
+      11995
+    ],
+    "GSP": [
+      11996
+    ],
+    "GST": [
+      11997
+    ],
+    "GTF": [
+      12003
+    ],
+    "GTR": [
+      12007
+    ],
+    "GUC": [
+      12012
+    ],
+    "GUM": [
+      12016
+    ],
+    "HDN": [
+      12094
+    ],
+    "HGR": [
+      12119
+    ],
+    "HHH": [
+      12124
+    ],
+    "HIB": [
+      12129
+    ],
+    "HLN": [
+      12156
+    ],
+    "HNL": [
+      12173
+    ],
+    "HOB": [
+      12177
+    ],
+    "HOU": [
+      12191
+    ],
+    "HPN": [
+      12197
+    ],
+    "HRL": [
+      12206
+    ],
+    "HSV": [
+      12217
+    ],
+    "HTS": [
+      12223
+    ],
+    "HYA": [
+      12250
+    ],
+    "HYS": [
+      12255
+    ],
+    "IAD": [
+      12264
+    ],
+    "IAG": [
+      12265
+    ],
+    "IAH": [
+      12266
+    ],
+    "ICT": [
+      12278
+    ],
+    "IDA": [
+      12280
+    ],
+    "ILG": [
+      12320
+    ],
+    "ILM": [
+      12323
+    ],
+    "IMT": [
+      12335
+    ],
+    "IND": [
+      12339
+    ],
+    "INL": [
+      12343
+    ],
+    "ISP": [
+      12391
+    ],
+    "ITH": [
+      12397
+    ],
+    "ITO": [
+      12402
+    ],
+    "JAC": [
+      12441
+    ],
+    "JAN": [
+      12448
+    ],
+    "JAX": [
+      12451
+    ],
+    "JFK": [
+      12478
+    ],
+    "JLN": [
+      12511
+    ],
+    "JMS": [
+      12519
+    ],
+    "JNU": [
+      12523
+    ],
+    "JST": [
+      12559
+    ],
+    "KOA": [
+      12758
+    ],
+    "KTN": [
+      12819
+    ],
+    "LAN": [
+      12884
+    ],
+    "LAR": [
+      12888
+    ],
+    "LAS": [
+      12889
+    ],
+    "LAW": [
+      12891
+    ],
+    "LAX": [
+      12892
+    ],
+    "LBB": [
+      12896
+    ],
+    "LBE": [
+      12898
+    ],
+    "LBF": [
+      12899
+    ],
+    "LBL": [
+      12902
+    ],
+    "LCH": [
+      12915
+    ],
+    "LCK": [
+      12917
+    ],
+    "LEX": [
+      12945
+    ],
+    "LFT": [
+      12951
+    ],
+    "LGA": [
+      12953
+    ],
+    "LGB": [
+      12954
+    ],
+    "LIH": [
+      12982
+    ],
+    "LIT": [
+      12992
+    ],
+    "LNK": [
+      13029
+    ],
+    "LRD": [
+      13061
+    ],
+    "LSE": [
+      13076
+    ],
+    "LWB": [
+      13121
+    ],
+    "LWS": [
+      13127
+    ],
+    "LYH": [
+      13139
+    ],
+    "MAF": [
+      13158
+    ],
+    "MBS": [
+      13184
+    ],
+    "MCI": [
+      13198
+    ],
+    "MCO": [
+      13204
+    ],
+    "MCW": [
+      13211
+    ],
+    "MDT": [
+      13230
+    ],
+    "MDW": [
+      13232
+    ],
+    "MEI": [
+      13241
+    ],
+    "MEM": [
+      13244
+    ],
+    "MFE": [
+      13256
+    ],
+    "MFR": [
+      13264
+    ],
+    "MGM": [
+      13277
+    ],
+    "MHK": [
+      13290
+    ],
+    "MHT": [
+      13296
+    ],
+    "MIA": [
+      13303
+    ],
+    "MKE": [
+      13342
+    ],
+    "MKG": [
+      13344
+    ],
+    "MLB": [
+      13360
+    ],
+    "MLI": [
+      13367
+    ],
+    "MLU": [
+      13377
+    ],
+    "MOB": [
+      13422
+    ],
+    "MOT": [
+      13433
+    ],
+    "MQT": [
+      13459
+    ],
+    "MRY": [
+      13476
+    ],
+    "MSN": [
+      13485
+    ],
+    "MSO": [
+      13486
+    ],
+    "MSP": [
+      13487
+    ],
+    "MSY": [
+      13495
+    ],
+    "MTJ": [
+      13502
+    ],
+    "MVY": [
+      13541
+    ],
+    "MYR": [
+      13577
+    ],
+    "OAJ": [
+      13795
+    ],
+    "OAK": [
+      13796
+    ],
+    "OGD": [
+      13829
+    ],
+    "OGG": [
+      13830
+    ],
+    "OGS": [
+      13832
+    ],
+    "OKC": [
+      13851
+    ],
+    "OMA": [
+      13871
+    ],
+    "OME": [
+      13873
+    ],
+    "ONT": [
+      13891
+    ],
+    "ORD": [
+      13930
+    ],
+    "ORF": [
+      13931
+    ],
+    "ORH": [
+      13933
+    ],
+    "OTH": [
+      13964
+    ],
+    "OTZ": [
+      13970
+    ],
+    "OWB": [
+      13983
+    ],
+    "PAE": [
+      14004
+    ],
+    "PAH": [
+      14006
+    ],
+    "PBG": [
+      14025
+    ],
+    "PBI": [
+      14027
+    ],
+    "PDX": [
+      14057
+    ],
+    "PGD": [
+      14082
+    ],
+    "PGV": [
+      14092
+    ],
+    "PHF": [
+      14098
+    ],
+    "PHL": [
+      14100
+    ],
+    "PHX": [
+      14107
+    ],
+    "PIA": [
+      14108
+    ],
+    "PIB": [
+      14109
+    ],
+    "PIE": [
+      14112
+    ],
+    "PIH": [
+      14113
+    ],
+    "PIR": [
+      14120
+    ],
+    "PIT": [
+      14122
+    ],
+    "PLN": [
+      14150
+    ],
+    "PNS": [
+      14193
+    ],
+    "PPG": [
+      14222
+    ],
+    "PQI": [
+      14231
+    ],
+    "PRC": [
+      14237
+    ],
+    "PSC": [
+      14252
+    ],
+    "PSE": [
+      14254
+    ],
+    "PSG": [
+      14256
+    ],
+    "PSM": [
+      14259
+    ],
+    "PSP": [
+      14262
+    ],
+    "PUB": [
+      14288
+    ],
+    "PUW": [
+      14303
+    ],
+    "PVD": [
+      14307
+    ],
+    "PVU": [
+      14314
+    ],
+    "PWM": [
+      14321
+    ],
+    "RAP": [
+      14457
+    ],
+    "RDD": [
+      14487
+    ],
+    "RDM": [
+      14489
+    ],
+    "RDU": [
+      14492
+    ],
+    "RFD": [
+      14512
+    ],
+    "RHI": [
+      14520
+    ],
+    "RIC": [
+      14524
+    ],
+    "RIW": [
+      14534
+    ],
+    "RKS": [
+      14543
+    ],
+    "RNO": [
+      14570
+    ],
+    "ROA": [
+      14574
+    ],
+    "ROC": [
+      14576
+    ],
+    "ROW": [
+      14588
+    ],
+    "RST": [
+      14633
+    ],
+    "RSW": [
+      14635
+    ],
+    "SAF": [
+      14674
+    ],
+    "SAN": [
+      14679
+    ],
+    "SAT": [
+      14683
+    ],
+    "SAV": [
+      14685
+    ],
+    "SBA": [
+      14689
+    ],
+    "SBN": [
+      14696
+    ],
+    "SBP": [
+      14698
+    ],
+    "SBY": [
+      14704
+    ],
+    "SCC": [
+      14709
+    ],
+    "SCE": [
+      14711
+    ],
+    "SCK": [
+      14716
+    ],
+    "SDF": [
+      14730
+    ],
+    "SEA": [
+      14747
+    ],
+    "SFB": [
+      14761
+    ],
+    "SFO": [
+      14771
+    ],
+    "SGF": [
+      14783
+    ],
+    "SGU": [
+      14794
+    ],
+    "SHD": [
+      14802
+    ],
+    "SHR": [
+      14812
+    ],
+    "SHV": [
+      14814
+    ],
+    "SIT": [
+      14828
+    ],
+    "SJC": [
+      14831
+    ],
+    "SJT": [
+      14842
+    ],
+    "SJU": [
+      14843
+    ],
+    "SLC": [
+      14869
+    ],
+    "SLN": [
+      14877
+    ],
+    "SMF": [
+      14893
+    ],
+    "SMX": [
+      14905
+    ],
+    "SNA": [
+      14908
+    ],
+    "SPI": [
+      14952
+    ],
+    "SPN": [
+      14955
+    ],
+    "SPS": [
+      14960
+    ],
+    "SRQ": [
+      14986
+    ],
+    "STC": [
+      15008
+    ],
+    "STL": [
+      15016
+    ],
+    "STS": [
+      15023
+    ],
+    "STT": [
+      15024
+    ],
+    "STX": [
+      15027
+    ],
+    "SUN": [
+      15041
+    ],
+    "SUX": [
+      15048
+    ],
+    "SWF": [
+      15070
+    ],
+    "SWO": [
+      15074
+    ],
+    "SYR": [
+      15096
+    ],
+    "TBN": [
+      15138
+    ],
+    "TLH": [
+      15249
+    ],
+    "TOL": [
+      15295
+    ],
+    "TPA": [
+      15304
+    ],
+    "TRI": [
+      15323
+    ],
+    "TTN": [
+      15356
+    ],
+    "TUL": [
+      15370
+    ],
+    "TUS": [
+      15376
+    ],
+    "TVC": [
+      15380
+    ],
+    "TWF": [
+      15389
+    ],
+    "TXK": [
+      15401
+    ],
+    "TYR": [
+      15411
+    ],
+    "TYS": [
+      15412
+    ],
+    "USA": [
+      12544
+    ],
+    "VCT": [
+      15569
+    ],
+    "VEL": [
+      15582
+    ],
+    "VLD": [
+      15607
+    ],
+    "VPS": [
+      15624
+    ],
+    "WRG": [
+      15841
+    ],
+    "WYS": [
+      15897
+    ],
+    "XNA": [
+      15919
+    ],
+    "XWA": [
+      16869
+    ],
+    "YAK": [
+      15991
+    ],
+    "YKM": [
+      16101
+    ],
+    "YUM": [
+      16218
+    ]
+  },
+  "zones": {
+    "ABE": "America/New_York",
+    "ABI": "America/Chicago",
+    "ABQ": "America/Denver",
+    "ABR": "America/Chicago",
+    "ABY": "America/New_York",
+    "ACK": "America/New_York",
+    "ACT": "America/Chicago",
+    "ACV": "America/Los_Angeles",
+    "ACY": "America/New_York",
+    "ADK": "America/Adak",
+    "ADQ": "America/Anchorage",
+    "AEX": "America/Chicago",
+    "AGS": "America/New_York",
+    "AKN": "America/Anchorage",
+    "ALB": "America/New_York",
+    "ALO": "America/Chicago",
+    "ALS": "America/Denver",
+    "ALW": "America/Los_Angeles",
+    "AMA": "America/Chicago",
+    "ANC": "America/Anchorage",
+    "APN": "America/Detroit",
+    "ART": "America/New_York",
+    "ASE": "America/Denver",
+    "ATL": "America/New_York",
+    "ATW": "America/Chicago",
+    "ATY": "America/Chicago",
+    "AUS": "America/Chicago",
+    "AVL": "America/New_York",
+    "AVP": "America/New_York",
+    "AZA": "America/Phoenix",
+    "AZO": "America/Detroit",
+    "BDL": "America/New_York",
+    "BET": "America/Anchorage",
+    "BFF": "America/Denver",
+    "BFL": "America/Los_Angeles",
+    "BGM": "America/New_York",
+    "BGR": "America/New_York",
+    "BHM": "America/Chicago",
+    "BIH": "America/Los_Angeles",
+    "BIL": "America/Denver",
+    "BIS": "America/Chicago",
+    "BJI": "America/Chicago",
+    "BKG": "America/Chicago",
+    "BLI": "America/Los_Angeles",
+    "BLV": "America/Chicago",
+    "BMI": "America/Chicago",
+    "BNA": "America/Chicago",
+    "BOI": "America/Boise",
+    "BOS": "America/New_York",
+    "BPT": "America/Chicago",
+    "BQK": "America/New_York",
+    "BQN": "America/Puerto_Rico",
+    "BRD": "America/Chicago",
+    "BRO": "America/Chicago",
+    "BRW": "America/Anchorage",
+    "BTM": "America/Denver",
+    "BTR": "America/Chicago",
+    "BTV": "America/New_York",
+    "BUF": "America/New_York",
+    "BUR": "America/Los_Angeles",
+    "BWI": "America/New_York",
+    "BZN": "America/Denver",
+    "CAE": "America/New_York",
+    "CAK": "America/New_York",
+    "CDC": "America/Denver",
+    "CDV": "America/Anchorage",
+    "CGI": "America/Chicago",
+    "CHA": "America/New_York",
+    "CHO": "America/New_York",
+    "CHS": "America/New_York",
+    "CID": "America/Chicago",
+    "CIU": "America/Detroit",
+    "CKB": "America/New_York",
+    "CLE": "America/New_York",
+    "CLL": "America/Chicago",
+    "CLT": "America/New_York",
+    "CMH": "America/New_York",
+    "CMI": "America/Chicago",
+    "CMX": "America/Detroit",
+    "CNY": "America/Denver",
+    "COD": "America/Denver",
+    "COS": "America/Denver",
+    "COU": "America/Chicago",
+    "CPR": "America/Denver",
+    "CRP": "America/Chicago",
+    "CRW": "America/New_York",
+    "CSG": "America/New_York",
+    "CVG": "America/New_York",
+    "CWA": "America/Chicago",
+    "CYS": "America/Denver",
+    "DAB": "America/New_York",
+    "DAL": "America/Chicago",
+    "DAY": "America/New_York",
+    "DBQ": "America/Chicago",
+    "DCA": "America/New_York",
+    "DDC": "America/Chicago",
+    "DEC": "America/Chicago",
+    "DEN": "America/Denver",
+    "DFW": "America/Chicago",
+    "DHN": "America/Chicago",
+    "DIK": "America/Denver",
+    "DLG": "America/Anchorage",
+    "DLH": "America/Chicago",
+    "DRO": "America/Denver",
+    "DRT": "America/Chicago",
+    "DSM": "America/Chicago",
+    "DTW": "America/Detroit",
+    "DVL": "America/Chicago",
+    "EAR": "America/Chicago",
+    "EAT": "America/Los_Angeles",
+    "EAU": "America/Chicago",
+    "ECP": "America/Chicago",
+    "EGE": "America/Denver",
+    "EKO": "America/Los_Angeles",
+    "ELM": "America/New_York",
+    "ELP": "America/Denver",
+    "ERI": "America/New_York",
+    "ESC": "America/Detroit",
+    "EUG": "America/Los_Angeles",
+    "EVV": "America/Chicago",
+    "EWN": "America/New_York",
+    "EWR": "America/New_York",
+    "EYW": "America/New_York",
+    "FAI": "America/Anchorage",
+    "FAR": "America/Chicago",
+    "FAT": "America/Los_Angeles",
+    "FAY": "America/New_York",
+    "FCA": "America/Denver",
+    "FLG": "America/Phoenix",
+    "FLL": "America/New_York",
+    "FLO": "America/New_York",
+    "FNT": "America/Detroit",
+    "FOD": "America/Chicago",
+    "FSD": "America/Chicago",
+    "FSM": "America/Chicago",
+    "FWA": "America/Indiana/Indianapolis",
+    "GCC": "America/Denver",
+    "GCK": "America/Chicago",
+    "GEG": "America/Los_Angeles",
+    "GFK": "America/Chicago",
+    "GGG": "America/Chicago",
+    "GJT": "America/Denver",
+    "GNV": "America/New_York",
+    "GPT": "America/Chicago",
+    "GRB": "America/Chicago",
+    "GRI": "America/Chicago",
+    "GRK": "America/Chicago",
+    "GRR": "America/Detroit",
+    "GSO": "America/New_York",
+    "GSP": "America/New_York",
+    "GST": "America/Juneau",
+    "GTF": "America/Denver",
+    "GTR": "America/Chicago",
+    "GUC": "America/Denver",
+    "GUM": "Pacific/Guam",
+    "HDN": "America/Denver",
+    "HGR": "America/New_York",
+    "HHH": "America/New_York",
+    "HIB": "America/Chicago",
+    "HLN": "America/Denver",
+    "HNL": "Pacific/Honolulu",
+    "HOB": "America/Denver",
+    "HOU": "America/Chicago",
+    "HPN": "America/New_York",
+    "HRL": "America/Chicago",
+    "HSV": "America/Chicago",
+    "HTS": "America/New_York",
+    "HYA": "America/New_York",
+    "HYS": "America/Chicago",
+    "IAD": "America/New_York",
+    "IAG": "America/New_York",
+    "IAH": "America/Chicago",
+    "ICT": "America/Chicago",
+    "IDA": "America/Boise",
+    "ILG": "America/New_York",
+    "ILM": "America/New_York",
+    "IMT": "America/Menominee",
+    "IND": "America/Indiana/Indianapolis",
+    "INL": "America/Chicago",
+    "ISP": "America/New_York",
+    "ITH": "America/New_York",
+    "ITO": "Pacific/Honolulu",
+    "JAC": "America/Denver",
+    "JAN": "America/Chicago",
+    "JAX": "America/New_York",
+    "JFK": "America/New_York",
+    "JLN": "America/Chicago",
+    "JMS": "America/Chicago",
+    "JNU": "America/Juneau",
+    "JST": "America/New_York",
+    "KOA": "Pacific/Honolulu",
+    "KTN": "America/Sitka",
+    "LAN": "America/Detroit",
+    "LAR": "America/Denver",
+    "LAS": "America/Los_Angeles",
+    "LAW": "America/Chicago",
+    "LAX": "America/Los_Angeles",
+    "LBB": "America/Chicago",
+    "LBE": "America/New_York",
+    "LBF": "America/Chicago",
+    "LBL": "America/Chicago",
+    "LCH": "America/Chicago",
+    "LCK": "America/New_York",
+    "LEX": "America/New_York",
+    "LFT": "America/Chicago",
+    "LGA": "America/New_York",
+    "LGB": "America/Los_Angeles",
+    "LIH": "Pacific/Honolulu",
+    "LIT": "America/Chicago",
+    "LNK": "America/Chicago",
+    "LRD": "America/Chicago",
+    "LSE": "America/Chicago",
+    "LWB": "America/New_York",
+    "LWS": "America/Los_Angeles",
+    "LYH": "America/New_York",
+    "MAF": "America/Chicago",
+    "MBS": "America/Detroit",
+    "MCI": "America/Chicago",
+    "MCO": "America/New_York",
+    "MCW": "America/Chicago",
+    "MDT": "America/New_York",
+    "MDW": "America/Chicago",
+    "MEI": "America/Chicago",
+    "MEM": "America/Chicago",
+    "MFE": "America/Chicago",
+    "MFR": "America/Los_Angeles",
+    "MGM": "America/Chicago",
+    "MHK": "America/Chicago",
+    "MHT": "America/New_York",
+    "MIA": "America/New_York",
+    "MKE": "America/Chicago",
+    "MKG": "America/Detroit",
+    "MLB": "America/New_York",
+    "MLI": "America/Chicago",
+    "MLU": "America/Chicago",
+    "MOB": "America/Chicago",
+    "MOT": "America/Chicago",
+    "MQT": "America/Detroit",
+    "MRY": "America/Los_Angeles",
+    "MSN": "America/Chicago",
+    "MSO": "America/Denver",
+    "MSP": "America/Chicago",
+    "MSY": "America/Chicago",
+    "MTJ": "America/Denver",
+    "MVY": "America/New_York",
+    "MYR": "America/New_York",
+    "OAJ": "America/New_York",
+    "OAK": "America/Los_Angeles",
+    "OGD": "America/Denver",
+    "OGG": "Pacific/Honolulu",
+    "OGS": "America/New_York",
+    "OKC": "America/Chicago",
+    "OMA": "America/Chicago",
+    "OME": "America/Nome",
+    "ONT": "America/Los_Angeles",
+    "ORD": "America/Chicago",
+    "ORF": "America/New_York",
+    "ORH": "America/New_York",
+    "OTH": "America/Los_Angeles",
+    "OTZ": "America/Nome",
+    "OWB": "America/Chicago",
+    "PAE": "America/Los_Angeles",
+    "PAH": "America/Chicago",
+    "PBG": "America/New_York",
+    "PBI": "America/New_York",
+    "PDX": "America/Los_Angeles",
+    "PGD": "America/New_York",
+    "PGV": "America/New_York",
+    "PHF": "America/New_York",
+    "PHL": "America/New_York",
+    "PHX": "America/Phoenix",
+    "PIA": "America/Chicago",
+    "PIB": "America/Chicago",
+    "PIE": "America/New_York",
+    "PIH": "America/Boise",
+    "PIR": "America/Chicago",
+    "PIT": "America/New_York",
+    "PLN": "America/Detroit",
+    "PNS": "America/Chicago",
+    "PPG": "Pacific/Pago_Pago",
+    "PQI": "America/New_York",
+    "PRC": "America/Phoenix",
+    "PSC": "America/Los_Angeles",
+    "PSE": "America/Puerto_Rico",
+    "PSG": "America/Sitka",
+    "PSM": "America/New_York",
+    "PSP": "America/Los_Angeles",
+    "PUB": "America/Denver",
+    "PUW": "America/Los_Angeles",
+    "PVD": "America/New_York",
+    "PVU": "America/Denver",
+    "PWM": "America/New_York",
+    "RAP": "America/Denver",
+    "RDD": "America/Los_Angeles",
+    "RDM": "America/Los_Angeles",
+    "RDU": "America/New_York",
+    "RFD": "America/Chicago",
+    "RHI": "America/Chicago",
+    "RIC": "America/New_York",
+    "RIW": "America/Denver",
+    "RKS": "America/Denver",
+    "RNO": "America/Los_Angeles",
+    "ROA": "America/New_York",
+    "ROC": "America/New_York",
+    "ROW": "America/Denver",
+    "RST": "America/Chicago",
+    "RSW": "America/New_York",
+    "SAF": "America/Denver",
+    "SAN": "America/Los_Angeles",
+    "SAT": "America/Chicago",
+    "SAV": "America/New_York",
+    "SBA": "America/Los_Angeles",
+    "SBN": "America/Indiana/Indianapolis",
+    "SBP": "America/Los_Angeles",
+    "SBY": "America/New_York",
+    "SCC": "America/Anchorage",
+    "SCE": "America/New_York",
+    "SCK": "America/Los_Angeles",
+    "SDF": "America/Kentucky/Louisville",
+    "SEA": "America/Los_Angeles",
+    "SFB": "America/New_York",
+    "SFO": "America/Los_Angeles",
+    "SGF": "America/Chicago",
+    "SGU": "America/Denver",
+    "SHD": "America/New_York",
+    "SHR": "America/Denver",
+    "SHV": "America/Chicago",
+    "SIT": "America/Sitka",
+    "SJC": "America/Los_Angeles",
+    "SJT": "America/Chicago",
+    "SJU": "America/Puerto_Rico",
+    "SLC": "America/Denver",
+    "SLN": "America/Chicago",
+    "SMF": "America/Los_Angeles",
+    "SMX": "America/Los_Angeles",
+    "SNA": "America/Los_Angeles",
+    "SPI": "America/Chicago",
+    "SPN": "Pacific/Saipan",
+    "SPS": "America/Chicago",
+    "SRQ": "America/New_York",
+    "STC": "America/Chicago",
+    "STL": "America/Chicago",
+    "STS": "America/Los_Angeles",
+    "STT": "America/St_Thomas",
+    "STX": "America/St_Thomas",
+    "SUN": "America/Boise",
+    "SUX": "America/Chicago",
+    "SWF": "America/New_York",
+    "SWO": "America/Chicago",
+    "SYR": "America/New_York",
+    "TBN": "America/Chicago",
+    "TLH": "America/New_York",
+    "TOL": "America/New_York",
+    "TPA": "America/New_York",
+    "TRI": "America/New_York",
+    "TTN": "America/New_York",
+    "TUL": "America/Chicago",
+    "TUS": "America/Phoenix",
+    "TVC": "America/Detroit",
+    "TWF": "America/Boise",
+    "TXK": "America/Chicago",
+    "TYR": "America/Chicago",
+    "TYS": "America/New_York",
+    "USA": "America/New_York",
+    "VCT": "America/Chicago",
+    "VEL": "America/Denver",
+    "VLD": "America/New_York",
+    "VPS": "America/Chicago",
+    "WRG": "America/Sitka",
+    "WYS": "America/Denver",
+    "XNA": "America/Chicago",
+    "XWA": "America/Chicago",
+    "YAK": "America/Yakutat",
+    "YKM": "America/Los_Angeles",
+    "YUM": "America/Phoenix"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "PBI": {
+    "source_iata": "DJT",
+    "expected_bts_airport_ids": [14027],
+    "reason": "The 2022 records use PBI. The current source uses DJT for the same airport. Preserve PBI as the lookup key for these records.",
+    "evidence_url": "https://flydjt.org/articles/post/president-donald-j-trump-international-airport-name-change-takes-effect/",
+    "scope": "Reviewed for the January-July 2022 input only; not a general historical code crosswalk."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/mborsetti/airportsdata",
+  "commit": "6adf0985697b5f5d2264ff9578158eeeded1e3d1",
+  "files": {
+    "airports.csv": {
+      "url": "https://raw.githubusercontent.com/mborsetti/airportsdata/6adf0985697b5f5d2264ff9578158eeeded1e3d1/airportsdata/airports.csv",
+      "sha256": "564322214d61deea3b029588fed8f9c0068408314fcbf065ad665dfb5de53e8b"
+    },
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/mborsetti/airportsdata/6adf0985697b5f5d2264ff9578158eeeded1e3d1/LICENSE",
+      "sha256": "1ab6bf365e1f6a1883ab6a2f797e761b221081b52a33273d86c157fd562106be"
+    }
+  }
+}

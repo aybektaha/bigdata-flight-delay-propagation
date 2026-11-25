@@ -1,0 +1,4 @@
+# Dependencies for the initial local data audit; not the full Spark pipeline.
+duckdb==1.4.5
+pyarrow==21.0.0
+tzdata==2025.2
